@@ -3,7 +3,7 @@
 |Build|Unit Test|cppcheck|Valgrind|Coverage|Codacy|Git Inspector|Code-inspector-score|code-inspector-status|
 |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 
-https://app.codacy.com/gh/ajeetsingh106/MINI-PROJECT/dashboard?utm_source=github.com&utm_medium=referral&utm_content=ajeetsigh106/MINI-PROJECT&utm_campaign=Badge_Grade
+|[![Codacy Badge](https://app.codacy.com/project/badge/Grade/255a97b0e1e644f19f945238bed4088c)]|https://app.codacy.com/gh/ajeetsingh106/MINI-PROJECT/dashboard?utm_source=github.com&utm_medium=referral&utm_content=ajeetsigh106/MINI-PROJECT&utm_campaign=Badge_Grade|
 
 # Tic Tac Toe
  Tic tac toe is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row wins the game.
