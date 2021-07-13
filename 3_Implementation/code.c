@@ -2,7 +2,7 @@
 #include <conio.h>
 #include <windows.h>
 #include <stdlib.h>
-#include <MMsystem.h>
+//#include <MMsystem.h>
 
 char square[10] = {'o','1','2','3','4','5','6','7','8','9'};
 int checkWin();
@@ -50,7 +50,7 @@ int main(){
 	drawBoard();
 	if(i==1){
 		printf("==>Player %d won",--player);
-		PlaySound(TEXT("C:\\Users\\dell\\Music\\win.wav"),NULL,SND_SYNC);
+		///PlaySound(TEXT(":\\Users\\dell\\Music\\win.wav"),NULL,SND_SYNC);
 	}
 	else {
 		printf("==>Game draw");
