@@ -20,4 +20,8 @@
 | LR06 | When the computer gets 3 Xs or 3 Os in vertical,horizontal or diagonal row, User will lose. | HR04 |
 | LR07 | When the user gets 3 Xs or 3 Os(as per his choice), in vertical,horizontal or diagonal row, he'll win. | HR05 |
 | LR08 | If the total number of moves, that is, 9 moves have been done and neither the user has won, it will end up in a draw. | HR06 |
+--------
+![Blank diagram (1)](https://user-images.githubusercontent.com/54038715/125668221-d50455b7-f733-49e5-9151-064d75d96b20.png)
+
+
 
