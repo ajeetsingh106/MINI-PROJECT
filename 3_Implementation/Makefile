@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 PROJ_NAME = tictactoe
 TEST_PROJ_NAME = Test_$(PROJ_NAME)
 
@@ -25,6 +26,43 @@ else
    endif
 endif
 # Makefile will not run target command if the name with file already exists. To override, use .PHONY
+=======
+# Name of the project
+PROJECT_NAME = TIK_TAC_TOE
+
+# Output directory
+BUILD = build
+
+# All source code files
+SRC = project_main.c\
+src/code.c
+
+# All test source files
+TEST_SRC = src/calculator_operations.c\
+test/code.c\
+unity/unity.c\
+
+TEST_OUTPUT = $(BUILD)/Test_$(PROJECT_NAME).out
+
+# All include folders with header files
+INC	= -Iinc\
+-Iunity\
+
+#Library Inlcudes
+#INCLUDE_LIBS = 
+INCLUDE_LIBS = -lcunit
+
+# Project Output name
+PROJECT_OUTPUT = $(BUILD)/$(PROJECT_NAME).out
+
+# Document files
+DOCUMENTATION_OUTPUT = documentation/html
+
+# Default target built
+$(PROJECT_NAME):all
+
+# Run the target even if the matching name exists
+>>>>>>> 517b136b2549b4387ab2cfe3e0048e5257e92ee5
 .PHONY: run clean test doc all
 
 all:
