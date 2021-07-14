@@ -1,8 +1,8 @@
-<<<<<<< HEAD
-PROJ_NAME = TIKTAKTOE
+
+PROJ_NAME = TIKTACTOE
 TEST_PROJ_NAME = Test_$(PROJ_NAME)
 
-SRC =src/drawboard.c\
+SRC =src/R2.c\
 src/R2.c
 
 
@@ -28,7 +28,7 @@ endif
 # Makefile will not run target command if the name with file already exists. To override, use .PHONY
 =======
 # Name of the project
-PROJECT_NAME = TIKTAKTOE
+PROJECT_NAME = TIKTACTOE
 
 # Output directory
 BUILD = build
