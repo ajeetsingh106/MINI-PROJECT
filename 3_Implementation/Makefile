@@ -6,11 +6,11 @@ BUILD = build
 
 # All source code files
 SRC = project_main.c\
-src/calculator_operations.c
+src/code.c
 
 # All test source files
 TEST_SRC = src/calculator_operations.c\
-test/test_calculator_operations.c\
+test/code.c\
 unity/unity.c\
 
 TEST_OUTPUT = $(BUILD)/Test_$(PROJECT_NAME).out
