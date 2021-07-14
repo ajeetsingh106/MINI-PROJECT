@@ -1,5 +1,5 @@
 # Name of the project
-PROJECT_NAME = Calculator
+PROJECT_NAME = TIK_TAC_TOE
 
 # Output directory
 BUILD = build
