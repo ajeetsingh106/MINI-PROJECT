@@ -1,45 +1,16 @@
-
-PROJ_NAME = tiktactoe
-TEST_PROJ_NAME = Test_$(PROJ_NAME)
-
-SRC =src/R2.c\
-src/R2.c
-
-
-COV_SRC = test/test.c
-
-TEST_SRC = test/test.c \
-unity/unity.c 
-INC_H = inc
-INC_T = unity
-
-#To check if the OS is Windows or Linux and set the executable file extension and delete command accordingly
-ifdef OS
-   RM = del 
-   FixPath = $(subst /,\,$1)
-   EXEC = exe
-else
-   ifeq ($(shell uname), Linux)
-      RM = rm -rf
-      FixPath = $1
-	  EXEC = out
-   endif
-endif
-# Makefile will not run target command if the name with file already exists. To override, use .PHONY
-=======
 # Name of the project
-PROJECT_NAME = tiktactoe
+PROJECT_NAME = Calculator
 
 # Output directory
 BUILD = build
 
 # All source code files
 SRC = project_main.c\
-src/code.c
+src/calculator_operations.c
 
 # All test source files
 TEST_SRC = src/calculator_operations.c\
-test/code.c\
+test/test_calculator_operations.c\
 unity/unity.c\
 
 TEST_OUTPUT = $(BUILD)/Test_$(PROJECT_NAME).out
@@ -62,44 +33,45 @@ DOCUMENTATION_OUTPUT = documentation/html
 $(PROJECT_NAME):all
 
 # Run the target even if the matching name exists
->>>>>>> 517b136b2549b4387ab2cfe3e0048e5257e92ee5
 .PHONY: run clean test doc all
 
-all:
-	gcc -I $(INC_H) $(SRC) main.c -o $(call FixPath,$(PROJ_NAME).$(EXEC))
-	
-run:
-	$(call FixPath,$(PROJ_NAME).$(EXEC))
-test:
-	gcc -I $(INC_H) -I $(INC_T) -fno-stack-protector $(TEST_SRC) $(SRC) -o $(call FixPath,$(TEST_PROJ_NAME).$(EXEC))
-	./$(call FixPath,$(TEST_PROJ_NAME).$(EXEC))
+all: $(SRC) $(BUILD)
+	gcc $(SRC) $(INC) -o $(PROJECT_OUTPUT).out
 
-coverage:
-	cp test/test.c .
-	gcc -fprofile-arcs -ftest-coverage -I $(INC_H) -I $(INC_T) -fno-stack-protector unity/unity.c test/test.c $(SRC) -o $(call FixPath, $(TEST_PROJ_NAME).$(EXEC))
-	$(call FixPath, ./$(TEST_PROJ_NAME).$(EXEC))
-	gcov -a $(COV_SRC)
-	$(RM) *.$(EXEC)
-	$(RM) *.gcda
-	$(RM) *.gcno
-	$(RM) *.c.gcov
-	$(RM) *.DAT
-	$(RM) test.c
+# Call `make run` to run the application
+run:$(PROJECT_NAME)
+	./$(PROJECT_OUTPUT).out
 
+# Document the code using Doxygen
+doc:
+	make -C ./documentation
 
-cppcheck:
-	cppcheck --enable=all $(SRC) main.c
-debug:
-	gcc -I $(INC_H) $(SRC) main.c -g -o $(PROJ_NAME).$(EXEC)
-	gdb $(PROJ_NAME).$(EXEC)
+# Build and run the unit tests
+test:$(BUILD)
+	gcc $(TEST_SRC) $(INC) -o $(TEST_OUTPUT) $(INCLUDE_LIBS)
+	./$(TEST_OUTPUT)
 
-valgrind:
-	valgrind ./$(TEST_PROJ_NAME).$(EXEC)
+analyze: test memcheck staticcheck coverage sanitize_check
 
+staticcheck:
+	cppcheck --enable=all -iunity .
 
+memcheck:
+	valgrind ./$(TEST_OUTPUT)
+
+sanitize_check:
+	gcc -fsanitize=address -fno-omit-frame-pointer $(TEST_SRC) $(INC) -o $(TEST_OUTPUT) $(INCLUDE_LIBS)
+	./$(TEST_OUTPUT)
+
+coverage:$(TEST_SRC)
+	gcc -fprofile-arcs -ftest-coverage $(TEST_SRC) $(INC) -o $(TEST_OUTPUT) $(INCLUDE_LIBS)
+	./$(TEST_OUTPUT)
+	gcov -a calculator_operations.c
+
+# Remove all the built files, invoke by `make clean`
 clean:
-	$(RM) *.DAT
-	$(RM) *.$(EXEC)
-	$(RM) *.gcda
-	$(RM) *.gcno
-	$(RM) *.c.gcov	
+	rm -rf $(BUILD) $(DOCUMENTATION_OUTPUT) *.gcda *.gcno *.gcov
+
+# Create new build folder if not present
+$(BUILD):
+	mkdir build
